@@ -48,6 +48,8 @@ public class MovieRecommender {
 
         String line = "";
         while ((content = bufferedReader.readLine()) != null) {
+
+
             if (content.startsWith("product/productId:") && flag == 0) {
 
                 String tmpProduct;
@@ -90,7 +92,7 @@ public class MovieRecommender {
 
 
         tmpArray = new String[hProductId.size()];
-        for(Map.Entry<String, Long> me : hProductId.entrySet()){
+        for(Map.Entry<String, Long> me : hProductId.entrySet()) {
             tmpArray[me.getValue().intValue()] = me.getKey();
         }
         DataModel model = new FileDataModel(new File("dataset.csv"));
@@ -102,8 +104,6 @@ public class MovieRecommender {
 
     public int getTotalReviews() {
         // every time it reads productId, userId, score add 1 to total reviews
-
-
         return totalReviews;
     }
 
@@ -114,7 +114,6 @@ public class MovieRecommender {
 
     public int getTotalUsers() {
         // read users and add them to hash table if it is in the hashtable dont and if hes added then update total user
-
         totalUsers = hUserId.size();
         return totalUsers;
     }
@@ -122,7 +121,7 @@ public class MovieRecommender {
 
     public List<String> getRecommendationsForUser(String user) throws TasteException {
         List<String> recommendations = new ArrayList<>();
-        for(RecommendedItem ri : recommender.recommend(hUserId.get(user), 5)){
+        for(RecommendedItem ri : recommender.recommend(hUserId.get(user), 3)){
             recommendations.add(tmpArray[(int)ri.getItemID()]);
         }
         return recommendations;
