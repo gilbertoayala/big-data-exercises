@@ -30,7 +30,6 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
 class MovieRecommender {
-    private String pathToFile;
     private int totalReviews;
     private UserBasedRecommender recommender;
     private HashMap<String, Long> hUserId = new HashMap<>();
@@ -112,7 +111,6 @@ class MovieRecommender {
     }
 
     int getTotalReviews() {
-        // every time it reads productId, userId, score add 1 to total reviews
         return totalReviews;
     }
 
@@ -121,7 +119,6 @@ class MovieRecommender {
     }
 
     int getTotalUsers() {
-        // read users and add them to hash table if it is in the hashtable dont and if hes added then update total user
         return hUserId.size();
     }
 
